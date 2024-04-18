@@ -1,7 +1,54 @@
 
-# CATS, FS2, http4s and Doobie - Client/Server Demo
+# http4s Prometheus Monitoring Example
 
-## [Grafana](http://localhost:3000)
+## Summary
+This repo contains a simple http4s server and corresponding client. The server includes the [http4s Prometheus ]
+
+## [Setup Grafana](http://localhost:3000)
+ 
+Grafana should be running on `http://localhost:3000`.
+
+Login to Grafana using userid `admin` and password `admin` - you will need to change your password on first access.
+
+### Setup the Prometheus data source
+Goto Connections --> Data Sources and Add data source : -
+
+![Add data source](grafana_add_data_source.png)
+
+Use `http://host.docker.internal:9090` as the Prometheus server URL: -
+
+![Host setup](grafana_add_data_source2.png)
+
+and hit "Save & test", you should see a "Successfully queried the Prometheus API" message: -
+
+![Host setup 2](grafana_add_data_source3.png)
+
+### Import the Sample Dashboard
+There is a sample dashboard in this repo that exposes the metrics produced by the http4s-prometheus library `sample_http4s_dashboard.json`.
+
+Import it via the Import Dashboard screen in Grafana: -
+
+![Import dashboard](grafana_import_dashboard.png)
+
+
+## Check Metrics are being scraped by Prometheus
+
+Prometheus should be running on `http://localhost:9090`.
+
+In the Prometheus UI, use the metrics explorer to confirm metrics prefixed `user_server` are being imported: -
+
+![Prometheus 1](prometheus1.png)
+
+![Prometheus 2](prometheus2.png)
+
+
+
+
+
+
+
+
+
 
 
 ## [Prometheus](http://localhost:9090)

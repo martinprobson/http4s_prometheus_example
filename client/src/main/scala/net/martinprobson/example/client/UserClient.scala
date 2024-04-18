@@ -50,7 +50,7 @@ object UserClient extends IOApp.Simple {
       .filter(id => id > 0)
       .evalTap(s => log.info(s"GetUser - $s"))
    /* 3. Finally delete them via the delete endpoint */
-      .parEvalMapUnorderedUnbounded(n => getUser(n, client))
+      .parEvalMapUnorderedUnbounded(n => deleteUser(n, client))
       .compile
       .drain
   } yield ()
@@ -83,7 +83,7 @@ object UserClient extends IOApp.Simple {
 
   /** Main entry point for our client program, call our program with an in memory generated stream of Users
     */
-  override def run: IO[Unit] = program(MemorySource(20000).stream)
+  override def run: IO[Unit] = program(MemorySource(100).stream)
 
   /**
    * Get the user specified by the given id, or return None if not found.
