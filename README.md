@@ -1,3 +1,4 @@
+`docker-compose up -d --build`
 
 # http4s Prometheus Monitoring Example
 
