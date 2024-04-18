@@ -54,7 +54,7 @@ object UserClient extends IOApp.Simple {
       .compile
       .drain
   } yield ()
-  
+
   /**
    * Log any errors that come back from our post user calls
    */
@@ -81,9 +81,9 @@ object UserClient extends IOApp.Simple {
       .use(client => userClient(client, source))
   }
 
-  /** Main entry point for out client program, call our program with an in memory generated stream of Users
+  /** Main entry point for our client program, call our program with an in memory generated stream of Users
     */
-  override def run: IO[Unit] = program(MemorySource(1000).stream)
+  override def run: IO[Unit] = program(MemorySource(20000).stream)
 
   /**
    * Get the user specified by the given id, or return None if not found.

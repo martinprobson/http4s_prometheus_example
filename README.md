@@ -1,6 +1,17 @@
 
 # CATS, FS2, http4s and Doobie - Client/Server Demo
 
+## [Grafana](http://localhost:3000)
+
+
+## [Prometheus](http://localhost:9090)
+
+![Prometheus UI](prometheus.png)
+
+Here are the user_server metrics as seen from the metrics explorer in Prometheus: -
+
+![Prometheus Metrics](prometheus_metrics_explorer.png)
+
 ## Overview
 This demo project shows how the following Scala functional libraries fit together to build an example
 file based, streaming http client server supported by an SQL or memory based backend repository. 
