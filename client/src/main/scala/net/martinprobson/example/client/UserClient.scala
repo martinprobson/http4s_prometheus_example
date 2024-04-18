@@ -85,7 +85,7 @@ object UserClient extends IOApp.Simple {
   /** Main entry point for our client program, call our program with an in
     * memory generated stream of Users
     */
-  override def run: IO[Unit] = program(MemorySource(10000).stream)
+  override def run: IO[Unit] = program(MemorySource(10).stream)
 
   /** Get the user specified by the given id, or return None if not found.
     * @param id

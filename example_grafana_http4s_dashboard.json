@@ -15,18 +15,160 @@
       }
     ]
   },
-  "description": "Dashboard for JVM metrics with Prometheus / JMX Exporter",
+  "description": "Simple sample dashboard for some of the default metrics exported by the http4s-prometheus-metrics",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 3066,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "panels": [
     {
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 8,
+      "title": "http4s Metrics",
+      "type": "row"
+    },
+    {
       "datasource": {
         "type": "prometheus",
-        "uid": "bdj3kpuvixgjkb"
+        "uid": "ddj4p5gf80buoa"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "color-background"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "super-light-green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "id": 13,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ddj4p5gf80buoa"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "user_server_request_count_total",
+          "format": "table",
+          "instant": true,
+          "legendFormat": "",
+          "range": false,
+          "refId": "A"
+        }
+      ],
+      "title": "Total Requests by Http Method and Status",
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {
+              "__name__": true,
+              "classifier": true,
+              "instance": true,
+              "job": true
+            },
+            "includeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Value": "Total Requests",
+              "job": "",
+              "method": "Http Method",
+              "status": "Http Status Code"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "id": 12,
+      "libraryPanel": {
+        "name": "Server Active Requests",
+        "uid": "cdj4tt49z9m9sf"
+      },
+      "title": "Server Active Requests"
+    },
+    {
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 10,
+      "libraryPanel": {
+        "name": "Response Duration (seconds)",
+        "uid": "cdj4tkdr7j4e8b"
+      },
+      "title": "Response Duration (seconds)"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 7,
+      "panels": [],
+      "title": "Jvm Metrics",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ddj4p5gf80buoa"
       },
       "fieldConfig": {
         "defaults": {
@@ -87,7 +229,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 15
       },
       "id": 2,
       "options": {
@@ -114,12 +256,14 @@
             "type": "prometheus",
             "uid": "bdj3kpuvixgjkb"
           },
-          "expr": "jvm_memory_bytes_used{instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_memory_bytes_used",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 5,
           "legendFormat": "{{area}} memory [{{instance}}]",
           "metric": "jvm_memory_bytes_used",
+          "range": true,
           "refId": "A",
           "step": 5
         }
@@ -130,7 +274,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "bdj3kpuvixgjkb"
+        "uid": "ddj4p5gf80buoa"
       },
       "fieldConfig": {
         "defaults": {
@@ -192,7 +336,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 7
+        "y": 22
       },
       "id": 3,
       "options": {
@@ -214,11 +358,13 @@
             "type": "prometheus",
             "uid": "bdj3kpuvixgjkb"
           },
-          "expr": "jvm_threads_current{instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_threads_current",
           "format": "time_series",
           "intervalFactor": 5,
           "legendFormat": "current [{{instance}}]",
           "metric": "jvm_threads_current",
+          "range": true,
           "refId": "A",
           "step": 10
         },
@@ -227,11 +373,13 @@
             "type": "prometheus",
             "uid": "bdj3kpuvixgjkb"
           },
-          "expr": "jvm_threads_daemon{instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_threads_daemon",
           "format": "time_series",
           "intervalFactor": 5,
           "legendFormat": "daemon [{{instance}}]",
           "metric": "jvm_threads_daemon",
+          "range": true,
           "refId": "B",
           "step": 10
         }
@@ -242,7 +390,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "bdj3kpuvixgjkb"
+        "uid": "ddj4p5gf80buoa"
       },
       "fieldConfig": {
         "defaults": {
@@ -304,7 +452,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 7
+        "y": 22
       },
       "id": 4,
       "options": {
@@ -326,12 +474,14 @@
             "type": "prometheus",
             "uid": "bdj3kpuvixgjkb"
           },
-          "expr": "jvm_classes_loaded{instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_classes_loaded",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 5,
           "legendFormat": "loaded [{{instance}}]",
           "metric": "jvm_classes_loaded",
+          "range": true,
           "refId": "A",
           "step": 10
         }
@@ -342,7 +492,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "bdj3kpuvixgjkb"
+        "uid": "ddj4p5gf80buoa"
       },
       "fieldConfig": {
         "defaults": {
@@ -403,7 +553,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 14
+        "y": 29
       },
       "id": 5,
       "options": {
@@ -425,12 +575,14 @@
             "type": "prometheus",
             "uid": "bdj3kpuvixgjkb"
           },
-          "expr": "rate(jvm_gc_collection_seconds_sum{instance=~\"$instance\"}[1m])",
+          "editorMode": "code",
+          "expr": "rate(jvm_gc_collection_seconds_sum[1m])",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 5,
           "legendFormat": "{{gc}} [{{instance}}]",
           "metric": "jvm_gc_collection_seconds_sum",
+          "range": true,
           "refId": "A",
           "step": 10
         }
@@ -441,7 +593,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "bdj3kpuvixgjkb"
+        "uid": "ddj4p5gf80buoa"
       },
       "fieldConfig": {
         "defaults": {
@@ -503,7 +655,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 14
+        "y": 29
       },
       "id": 6,
       "options": {
@@ -525,12 +677,14 @@
             "type": "prometheus",
             "uid": "bdj3kpuvixgjkb"
           },
-          "expr": "jvm_gc_collection_seconds_count{instance=~\"$instance\"}",
+          "editorMode": "code",
+          "expr": "jvm_gc_collection_seconds_count",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 5,
           "legendFormat": "{{gc}} [{{instance}}]",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 10
         }
@@ -543,42 +697,14 @@
   "schemaVersion": 39,
   "tags": [
     "JVM",
-    "prometheus"
+    "prometheus",
+    "http4s"
   ],
   "templating": {
-    "list": [
-      {
-        "allValue": "",
-        "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "bdj3kpuvixgjkb"
-        },
-        "definition": "",
-        "hide": 0,
-        "includeAll": true,
-        "label": "Instance",
-        "multi": true,
-        "name": "instance",
-        "options": [],
-        "query": "label_values(instance)",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      }
-    ]
+    "list": []
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -607,8 +733,8 @@
     ]
   },
   "timezone": "",
-  "title": "JVM overview - Prometheus",
+  "title": "http4s Sample Dashboard",
   "uid": "adj491jtrzapsa",
-  "version": 2,
+  "version": 11,
   "weekStart": ""
 }
