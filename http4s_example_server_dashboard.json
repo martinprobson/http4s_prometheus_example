@@ -35,10 +35,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ddj4p5gf80buoa"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -66,7 +63,7 @@
       },
       "gridPos": {
         "h": 7,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 1
       },
@@ -83,7 +80,7 @@
         },
         "showHeader": true
       },
-      "pluginVersion": "10.4.1",
+      "pluginVersion": "10.4.2",
       "targets": [
         {
           "datasource": {
@@ -125,32 +122,168 @@
       "type": "table"
     },
     {
-      "gridPos": {
-        "h": 7,
-        "w": 12,
-        "x": 12,
-        "y": 1
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdj7ykc5419tsb"
       },
-      "id": 12,
-      "libraryPanel": {
-        "name": "Server Active Requests",
-        "uid": "cdj4tt49z9m9sf"
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
       },
-      "title": "Server Active Requests"
-    },
-    {
       "gridPos": {
         "h": 6,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 8
       },
-      "id": 10,
-      "libraryPanel": {
-        "name": "Response Duration (seconds)",
-        "uid": "cdj4tkdr7j4e8b"
+      "id": 12,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
       },
-      "title": "Response Duration (seconds)"
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "cdj7ykc5419tsb"
+          },
+          "editorMode": "code",
+          "expr": "rate(user_server_active_request_count[$__rate_interval])",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Server Active Requests",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "cdj7ykc5419tsb"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 10,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.4.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "bdj7x6x501wqof"
+          },
+          "editorMode": "code",
+          "expr": "sum(user_server_response_duration_seconds_bucket) by (le)",
+          "format": "heatmap",
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Response Duration (seconds)",
+      "type": "bargauge"
     },
     {
       "collapsed": false,
@@ -158,7 +291,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 20
       },
       "id": 7,
       "panels": [],
@@ -166,10 +299,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ddj4p5gf80buoa"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -229,7 +359,7 @@
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 21
       },
       "id": 2,
       "options": {
@@ -272,10 +402,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ddj4p5gf80buoa"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -319,8 +446,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -336,7 +462,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 22
+        "y": 28
       },
       "id": 3,
       "options": {
@@ -388,10 +514,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ddj4p5gf80buoa"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -435,8 +558,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -452,7 +574,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 22
+        "y": 28
       },
       "id": 4,
       "options": {
@@ -490,10 +612,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ddj4p5gf80buoa"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -536,8 +655,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -553,7 +671,7 @@
         "h": 7,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 35
       },
       "id": 5,
       "options": {
@@ -591,10 +709,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "ddj4p5gf80buoa"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -638,8 +753,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -655,7 +769,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 35
       },
       "id": 6,
       "options": {
@@ -735,6 +849,6 @@
   "timezone": "",
   "title": "http4s Sample Dashboard",
   "uid": "adj491jtrzapsa",
-  "version": 11,
+  "version": 2,
   "weekStart": ""
 }
