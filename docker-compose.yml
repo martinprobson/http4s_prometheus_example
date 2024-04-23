@@ -7,8 +7,7 @@ volumes:
 services:
   server:
     build: .
-    image: server:test
-      #    network_mode: "host"
+    image: server:test2
     ports:
       - "8085:8085"
 
@@ -16,9 +15,11 @@ services:
     image: grafana/grafana
     container_name: grafana
     restart: "no"
-      #network_mode: "host"
     volumes:
       - grafana-storage:/var/lib/grafana
+      - ./grafana_conf/datasource/default.yaml:/etc/grafana/provisioning/datasources/default.yaml
+      - ./grafana_conf/dashboard/default.yaml:/etc/grafana/provisioning/dashboards/default.yaml
+      - ./grafana_conf/dashboard/http4s_example_server_dashboard.json:/etc/grafana/provisioning/dashboards/http4s_example_server_dashboard.json
     ports:
       - "3000:3000"
 
@@ -27,7 +28,7 @@ services:
     container_name: prometheus
     restart: "no"
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
@@ -37,5 +38,4 @@ services:
       - '--web.enable-lifecycle'
     ports:
       - "9090:9090"
-        #    network_mode: "host"
         

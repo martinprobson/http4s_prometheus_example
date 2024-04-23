@@ -11,7 +11,7 @@ There is a [docker-compose](docker-compose.yml) file in this project that will c
 
 1. An instance of the http4s user_server.
 2. A Prometheus instance that is configured to scrape the metrics from the server's metrics endpoint.
-3. An instance of Grafana that can be configured to ingest the metrics from Prometheus to display the sample dashboard above.
+3. An instance of Grafana that is already provisioned to ingest the metrics from Prometheus to display the sample dashboard above.
 
 ## Requirements
 The following is required to run this project on your local machine: -
@@ -65,26 +65,11 @@ Grafana should be running on `http://localhost:3000`.
 
 Login to Grafana using userid `admin` and password `admin` - you will need to change your password on first access.
 
-### Setup the Prometheus data source
-Goto Connections --> Data Sources and Add data source : -
+The Prometheus data source and a sample dashboard is already provisioned.
 
-![Add data source](grafana_add_data_source.png)
+The dashboard is accessible under services in the dashboards menu: -
 
-Use `http://prometheus:9090` as the Prometheus server URL (this is the internal network name docker-compose
-creates for the Prometheus image): -
-
-![Host setup](grafana_add_data_source2.png)
-
-and hit "Save & test", you should see a "Successfully queried the Prometheus API" message: -
-
-![Host setup 2](grafana_add_data_source3.png)
-
-### Import the Sample Dashboard
-There is a sample dashboard in this repo that exposes the metrics produced by the http4s-prometheus library `sample_http4s_dashboard.json`.
-
-Import it via the Import Dashboard screen in Grafana: -
-
-![Import dashboard](grafana_import_dashboard.png)
+![Dashboard location](dashboard_location.png)
 
 ### Run the User Client to generate some metrics
 The user client is run outside of docker and can be run from your IDE or via sbt as follows: -
@@ -149,7 +134,7 @@ The number of requests performed by the client is controlled by the size of the 
   /** Main entry point for our client program, call our program with an in
     * memory generated stream of Users
     */
-  override def run: IO[Unit] = program(MemorySource(10).stream)
+  override def run: IO[Unit] = program(MemorySource(1000).stream)
 ```
 
 ## Metrics Prefix/Histogram buckets

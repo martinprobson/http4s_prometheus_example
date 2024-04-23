@@ -85,7 +85,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "ddj4p5gf80buoa"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -124,7 +124,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cdj7ykc5419tsb"
+        "uid": "prometheusdatasource"
       },
       "description": "",
       "fieldConfig": {
@@ -204,7 +204,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "cdj7ykc5419tsb"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "rate(user_server_active_request_count[$__rate_interval])",
@@ -220,7 +220,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "cdj7ykc5419tsb"
+        "uid": "prometheusdatasource"
       },
       "description": "",
       "fieldConfig": {
@@ -271,7 +271,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdj7x6x501wqof"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "sum(user_server_response_duration_seconds_bucket) by (le)",
@@ -384,7 +384,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdj3kpuvixgjkb"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "jvm_memory_bytes_used",
@@ -482,7 +482,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdj3kpuvixgjkb"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "jvm_threads_current",
@@ -497,7 +497,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdj3kpuvixgjkb"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "jvm_threads_daemon",
@@ -594,7 +594,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdj3kpuvixgjkb"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "jvm_classes_loaded",
@@ -691,7 +691,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdj3kpuvixgjkb"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "rate(jvm_gc_collection_seconds_sum[1m])",
@@ -789,7 +789,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "bdj3kpuvixgjkb"
+            "uid": "prometheusdatasource"
           },
           "editorMode": "code",
           "expr": "jvm_gc_collection_seconds_count",
