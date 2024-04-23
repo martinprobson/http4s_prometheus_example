@@ -73,7 +73,7 @@ object UserClient extends IOApp.Simple {
     * @param source
     *   The source stream of Users
     */
-  def program(source: Stream[IO, User]): IO[Unit] = {
+  private def program(source: Stream[IO, User]): IO[Unit] = {
     EmberClientBuilder
       .default[IO]
       .withLogger(log)
@@ -85,7 +85,7 @@ object UserClient extends IOApp.Simple {
   /** Main entry point for our client program, call our program with an in
     * memory generated stream of Users
     */
-  override def run: IO[Unit] = program(MemorySource(30000).stream)
+  override def run: IO[Unit] = program(MemorySource(10000).stream)
 
   /** Get the user specified by the given id, or return None if not found.
     * @param id

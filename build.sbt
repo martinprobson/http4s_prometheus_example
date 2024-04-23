@@ -6,7 +6,7 @@ ThisBuild / organization := "net.martinprobson"
 val Http4sVersion = "0.23.26"
 val CirceVersion = "0.14.6"
 val fs2Version = "3.10.2"
-val LogbackVersion = "1.2.11"
+val LogbackVersion = "1.4.14"
 
 val commonDependencies = Seq(
   "ch.qos.logback" % "logback-classic" % LogbackVersion,
@@ -58,7 +58,7 @@ lazy val server = project
   .settings(libraryDependencies ++=
     commonDependencies ++
     Seq("org.http4s" %% "http4s-ember-server" % Http4sVersion,
-        "org.http4s" %% "http4s-prometheus-metrics" % "0.23.12",
+        "org.http4s" %% "http4s-prometheus-metrics" % "0.24.6",
         "org.http4s" %% "http4s-circe" % Http4sVersion,
         "org.http4s" %% "http4s-dsl" % Http4sVersion)
     )
